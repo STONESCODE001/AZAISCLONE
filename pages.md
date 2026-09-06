@@ -1,97 +1,97 @@
 # Page Structures & Component Trees
 
-Based on the user journey mapped in `flow.md`, here are the detailed Markdown Component Trees for each route in the application. These trees define the exact UI hierarchy before we build the components.
+Based on the updated requirements, here are the detailed Markdown Component Trees for each route in the application.
+
+## Routing Rules
+- **Unauthenticated Users:** Can access `/` (Landing) and `/auth/login`. Attempting to access `/dashboard`, `/history`, or the Studio will redirect them to `/auth/login`. (Alternatively, if we allow unauth studio access, they can visit `/studio/*` but will be redirected to `/auth/login` when they click Generate).
+- **Authenticated Users:** Cannot access `/` or `/auth/login`. Middleware will automatically redirect them to `/dashboard`.
 
 ## 1. Landing Page (`/`)
-Serves as the public entry point, showcasing features and driving users to the Studio.
+Serves as the public entry point. *Authenticated users are redirected away from this page.*
 
 ```text
 app/page.tsx
 └── MarketingLayout
-    ├── Navbar (Logo, "Pricing", "Get Started")
+    ├── Navbar (Logo, "Login", "Get Started")
     ├── HeroSection
-    │   ├── HeroHeadline
-    │   ├── HeroSubtext
-    │   └── CallToActionButton ("Get Started" -> redirects to /studio/video)
     ├── FeatureShowcase
-    │   ├── VideoExampleGrid
-    │   └── ImageExampleGrid
-    ├── PricingSection (Static visual only)
+    ├── PricingSection
     └── Footer
 ```
 
-## 2. Video Studio (`/studio/video`)
+## 2. Auth Page (`/auth/login`)
+A dedicated authentication page for Email OTP.
+
+```text
+app/auth/login/page.tsx
+└── AuthLayout
+    └── AuthCard
+        ├── Header ("Sign in to AzaisAI")
+        ├── EmailInputForm
+        └── OTPVerificationForm (Appears after email submission)
+```
+
+## 3. Main Dashboard (`/dashboard`)
+The central hub for authenticated users.
+
+```text
+app/dashboard/page.tsx
+└── DashboardLayout
+    ├── SidebarNavigation (Dashboard, Video Studio, Image Studio, History)
+    ├── Topbar (User Profile, Credit Balance)
+    └── MainContent
+        ├── WelcomeHeader
+        ├── QuickActionsGrid (Cards to jump into Video or Image studio)
+        └── RecentGenerationsPreview (Mini-gallery of latest creations)
+```
+
+## 4. Video Studio (`/studio/video`)
 The core interface for Text-to-Video and Image-to-Video generation.
 
 ```text
 app/studio/video/page.tsx
-└── StudioLayout
-    ├── SidebarNavigation (Links to Video, Image, History, FAQ)
-    ├── Topbar (User Profile, Credit Balance)
+└── DashboardLayout
+    ├── SidebarNavigation
+    ├── Topbar
     └── MainCanvas
         ├── VideoPreviewArea (Shows loading state or generated video)
         └── ConfigurationPanel
             ├── ModelSelector (Sora, Veo 2, Veo 3, etc.)
-            ├── AspectRatioGroup (16:9, 9:16)
-            ├── DurationPills (5s, 6s, 8s)
-            ├── ImageUploadZone (Drag-and-drop for Image-to-Video)
-            ├── PromptInputArea
-            │   ├── TextArea
-            │   └── EnhancePromptButton (Calls Gemini API)
+            ├── AspectRatioGroup
+            ├── DurationPills
+            ├── ImageUploadZone (Drag-and-drop)
+            ├── PromptInputArea (with Enhance Prompt Button)
             └── GenerateActionArea
-                ├── CreditCostIndicator
-                └── GenerateButton (Triggers Auth Check or Polling)
 ```
 
-## 3. Image Studio (`/studio/image`)
-The interface for Text-to-Image generation. Shares much of the layout with the Video Studio.
+## 5. Image Studio (`/studio/image`)
+The interface for Text-to-Image generation.
 
 ```text
 app/studio/image/page.tsx
-└── StudioLayout
+└── DashboardLayout
     ├── SidebarNavigation
     ├── Topbar
     └── MainCanvas
-        ├── ImagePreviewArea (Shows loading state or generated image)
+        ├── ImagePreviewArea
         └── ConfigurationPanel
             ├── ModelSelector
-            ├── AspectRatioGroup (16:9, 1:1, 9:16, 4:3, 3:4)
+            ├── AspectRatioGroup
             ├── PromptInputArea
-            │   ├── TextArea
-            │   └── EnhancePromptButton
             └── GenerateActionArea
-                ├── CreditCostIndicator
-                └── GenerateButton
 ```
 
-## 4. History Page (`/history`)
-A private route displaying a user's past generations.
+## 6. History Page (`/history`)
+A private route displaying all past generations.
 
 ```text
 app/history/page.tsx
-└── StudioLayout
+└── DashboardLayout
     ├── SidebarNavigation
     ├── Topbar
     └── MainContent
         ├── HistoryHeader ("Your Generations")
         └── GenerationGrid
-            ├── GenerationCard (Video thumbnail)
-            │   ├── PlayButtonOverlay
-            │   └── PromptTooltip
+            ├── GenerationCard (Video)
             └── GenerationCard (Image)
-                ├── DownloadButton
-                └── PromptTooltip
-```
-
-## 5. Global Modals (Rendered via Context/Layout)
-These components exist globally and overlay the current route without forcing a page reload, preserving state.
-
-```text
-app/layout.tsx
-└── GlobalUIProvider
-    └── AuthModal (Triggered when unauthenticated user clicks 'Generate')
-        ├── ModalHeader ("Sign in to generate")
-        ├── EmailInputForm
-        ├── OTPVerificationForm (Appears after email submission)
-        └── CloseButton
 ```

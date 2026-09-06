@@ -5,11 +5,11 @@ change.
 
 ## Current Phase
 
-- [e.g. Not started / In progress / Complete]
+- In progress
 
 ## Current Goal
 
-- [What you are building right now]
+- Implement Unit 1: Foundation & Design System
 
 ## Completed
 
@@ -17,11 +17,11 @@ change.
 
 ## In Progress
 
-- None yet.
+- Unit 1: Foundation & Design System
 
 ## Next Up
 
-- [First unit to build]
+- Unit 2
 
 ## Open Questions
 

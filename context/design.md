@@ -233,4 +233,54 @@ The design uses a high-radius curve strategy, contrasting smooth, hyper-curved i
 - **Dark Prompt Bar:** Seamless rounded rectangle container `#1A1A20` with subtle border `rgba(255, 255, 255, 0.12)`, placeholder color `#71717A`, inline model switcher pill, and an icon action button aligned to the right edge.
 - **Export Multi-Select Chip:** Pill toggle group with unselected `#1A1A20` and selected solid `#FFFFFF` with black text.
 
+# UI Design Guidelines: Dos and Don'ts
+
+## 1. Color & Visual Language
+### Do
+- Use a restrained base color palette (grayscale/near-white) and exactly one muted accent color.
+- Assign color exclusively to data, charts, statuses, and critical actions.
+- Use a unified, professional icon set (e.g., Lucide, Phosphor).
+- Maintain uniform border radiuses across identical component types (e.g., all buttons must share the exact same radius).
+- Design for real-world "ugly" data (e.g., truncate text strings after 15 characters, place icons on solid background shapes to ensure visibility).
+
+### Don't
+- Do not let AI define color palettes; explicitly reject default, highly saturated, clashing colors (e.g., bright purple paired with bright blue).
+- Do not use emojis anywhere in the interface as icons, indicators, or decorative elements.
+- Do not use varying font sizes or weights randomly; stick strictly to the defined typographic hierarchy.
+
+## 2. Layout & Hierarchy
+### Do
+- Establish a strict typographic hierarchy using size, weight, and color to highlight exactly one primary subject per screen.
+- Compress repeated data rows by collapsing multiple action buttons into a single triple-dot dropdown menu.
+- Push numerical data and critical metrics to the right side of list items.
+- Ensure every single page answers one specific question for the user.
+- Use a "Load More" button instead of infinite scroll to ensure users can reach footer navigation.
+
+### Don't
+- Do not reuse the same KPI metric cards across irrelevant pages (e.g., displaying global analytics on a billing tab).
+- Do not fill empty screen space with decorative elements or unrelated features simply because the space exists.
+- Do not use a repeating alternating layout (text-left, image-right) down the entirety of a landing page.
+
+## 3. User Experience & Interactions
+### Do
+- Use a single, consistent action verb throughout the entire application (e.g., strictly use "Delete", never alternate with "Remove" or "Trash").
+- Require typed text confirmation (e.g., typing the project name) for any destructive, expensive, or irreversible action.
+- Display an explicit completion state (e.g., a green tick icon or a brief confetti animation) immediately after a task finishes.
+- Display skeleton loading screens immediately upon user action to eliminate perceived wait times.
+
+### Don't
+- Do not execute destructive actions (like delete) immediately on a single button click without a confirmation step.
+- Do not use decorative animations (parallax, scroll-jacking, fading elements) unless they explicitly communicate a functional status change or loading state.
+- Do not leave empty states completely blank; design empty, error, and loading states deliberately.
+
+## 4. Onboarding & Copywriting
+### Do
+- Implement progressive onboarding that reveals the next single obvious action only after the user completes the current one.
+- Use actual product screenshots, explicitly cropped to highlight specific features, instead of generic full-screen grabs.
+- Write copy that promises specific user outcomes instead of describing raw product functionality (e.g., "Generate cinematic scenes" instead of "Use AI models").
+- Keep all call-to-action (CTA) button labels completely identical across the landing page.
+
+### Don't
+- Do not use forced, multi-step, unskippable product tour overlays for onboarding.
+- Do not use generic stock photos anywhere on the landing page.
 

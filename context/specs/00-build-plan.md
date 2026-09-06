@@ -17,10 +17,15 @@ This document breaks the entire build into sequential, testable units. Each unit
 - **Dependencies:** Unit 1.
 - **Visible Result:** A functional studio form where a user can enter a prompt and select settings, refresh the browser, and see their inputs perfectly preserved.
 
-## Unit 4: Supabase Auth & Login Gate
-- **What it builds:** Initializes the Supabase client. Builds the global Login Modal. Implements Email OTP authentication. Wires the "Generate" button to check auth state: if unauthenticated, open the modal; if authenticated, proceed.
-- **Dependencies:** Unit 3 (needs the Generate button to hook into).
-- **Visible Result:** An unauthenticated user clicking "Generate" triggers the modal, logs in via email, and returns to the studio with their prompt state still intact.
+## Unit 4: Supabase Auth & Dedicated Login Page
+- **What it builds:** Initializes the Supabase client. Builds the `/auth/login` page for Email OTP authentication. Sets up Next.js Middleware to protect routes and redirect authenticated users away from `/` and `/auth/login` to `/dashboard`.
+- **Dependencies:** Unit 3.
+- **Visible Result:** Unauthenticated users are routed to `/auth/login` when required, log in, and are redirected to the new authenticated dashboard environment.
+
+## Unit 4.5: Main Dashboard Hub
+- **What it builds:** The `/dashboard` route. Creates the central hub with a welcome header, quick action cards (jump to Video/Image studio), and a recent generations preview.
+- **Dependencies:** Unit 4 (requires Auth middleware).
+- **Visible Result:** Authenticated users see a centralized dashboard upon login instead of the public landing page.
 
 ## Unit 5: Prompt Enhancement (Gemini API)
 - **What it builds:** A server-side `/api/enhance` route integrating the Google Gemini free tier. Adds the "Enhance Prompt" button to the Studio UI with a localized loading spinner.
