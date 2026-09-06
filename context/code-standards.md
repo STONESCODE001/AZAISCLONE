@@ -20,8 +20,10 @@
 
 ## Styling
 
-- *(Pending finalized `design.md`)* Use CSS custom property tokens or strict Tailwind utility classes—no arbitrary hardcoded hex values in the JSX (e.g., avoid `bg-[#123456]`).
-- *(Pending finalized `design.md`)* Follow the border radius, spacing, and elevation scale defined in your upcoming design system.
+- Adhere strictly to the **Cinematic AI Dark Mode** tokens defined in `design.md`. Use CSS custom properties or mapped Tailwind utility classes; do not use arbitrary hex values in JSX (e.g., avoid `bg-[#131315]`).
+- Enforce the typography scale: use `Plus Jakarta Sans` for UI/Headlines and `Space Grotesk` strictly for metadata, prompt indicators, and technical readouts.
+- Enforce the Border Radius strategy: use `rounded-full` exclusively for primary action buttons/tags, and `rounded-xl` to `rounded-2xl` for media and bento cards.
+- Implement the defined Depth System: use flat dark tonal layering with hairline translucent borders (e.g., `border-white/10`) and glassmorphic blurs rather than heavy drop shadows.
 - Extract highly repeated class string combinations into reusable components (e.g., using `cva`) rather than copying long Tailwind strings across files.
 
 ## API Routes

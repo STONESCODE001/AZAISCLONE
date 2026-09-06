@@ -50,7 +50,7 @@ Supabase Auth using **Email OTP only**.
 ## 3. Design
 
 **What is the visual language?**
-*(The user will define the visual language and colors in a separate `design.md` file)*.
+Cinematic AI Dark Mode. A premium blend of minimalism and glassmorphic tactility featuring deep obsidian backgrounds (`#0A0A0C`), high-contrast `Plus Jakarta Sans` typography, and technical metadata in `Space Grotesk`. Elevation is achieved via flat dark tonal layering and hairline translucent borders rather than diffuse drop shadows.
 
 **What UI component library are you using?**
 Tailwind CSS + shadcn/ui + Custom React components.
