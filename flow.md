@@ -1,62 +1,31 @@
 # User Journey & Application Flow
 
-This document outlines the core user journey for the AzaisAI Clone, mapped out step-by-step using Mermaid.js. It focuses strictly on user actions, system decisions, and state changes.
+This document outlines the core user journey for the application, mapped out step-by-step using Mermaid.js. It focuses strictly on user actions, system decisions, and state changes.
 
 ## Core Generation Flow
 
-The following flowchart details the exact path a user takes from landing on the site to configuring their generation, passing the authentication gate, and receiving their media.
+The following flowchart details the exact path a user takes from landing on the site to accessing their dashboard.
 
 ```mermaid
 flowchart TD
     %% User entry
-    Visit[User Visits Landing Page] --> ClickGetStarted[Clicks 'Get Started']
-    
-    %% Unauthenticated Studio Flow
-    subgraph Configuration Phase
-        ClickGetStarted --> Studio[Redirected to Studio]
-        Studio --> Configure[Selects AI Model, Aspect Ratio & Duration]
-        Configure --> Input[Enters Prompt or Uploads Base Image]
-        
-        Input -.->|Optional| Enhance[Clicks 'Enhance Prompt']
-        Enhance -.->|System| Gemini[Gemini API Optimizes Text]
-        Gemini -.-> Input
-        
-        Input --> ClickGenerate[Clicks 'Generate' Button]
-    end
+    Visit[User Visits Landing Page] --> ClickGetStarted[Clicks 'Get Started for Free']
     
     %% Authentication Gate
-    AuthGate{Is User Logged In?}
-    ClickGenerate --> AuthGate
+    ClickGetStarted --> AuthGate{Is User Logged In?}
     
     %% Auth Process
     subgraph Authentication Gate
-        AuthGate -- No --> ShowModal[Display Login Modal]
-        ShowModal --> EnterEmail[User Submits Email]
-        EnterEmail -->|System| SendOTP[Supabase Sends OTP]
-        SendOTP --> EnterOTP[User Submits 6-digit Code]
-        EnterOTP -->|System| Verify[Validate Session]
+        AuthGate -- No --> ShowAuth[Display Auth Modal / Redirect to Auth Page]
+        ShowAuth --> EnterCredentials[User Enters Credentials]
+        EnterCredentials -->|System| Verify[Validate Session]
     end
     
-    Verify -->|Success| RestoreState
-    
-    %% Authenticated Generation Flow
-    subgraph Generation Process
-        RestoreState[System Restores Previous Config/Input State]
-        AuthGate -- Yes --> ExecuteGen[Initiate Mock Generation]
-        RestoreState --> ExecuteGen
-        
-        ExecuteGen -->|System| Deduct[Deduct Credits in DB]
-        Deduct -->|System| Polling[Simulate 15s Loading State]
-        Polling -->|System| FetchAsset[Retrieve Pre-rendered Asset from Storage]
-        FetchAsset --> Display[Render Video/Image in UI]
-    end
-    
-    %% Post-Generation
-    Display -->|System| SaveHistory[Log Generation in DB]
-    SaveHistory --> ViewHistory[User Views Gallery in History Page]
+    %% Authenticated Access
+    Verify -->|Success| Dashboard
+    AuthGate -- Yes --> Dashboard[Redirected to Dashboard Page]
 ```
 
 ## Key Architectural Decisions in this Flow:
-1. **Unauthenticated Access:** The user is allowed deep into the product (configuring models and prompts) before being prompted to log in. This maximizes conversion.
-2. **State Persistence:** The bridge between `Verify` and `RestoreState` relies heavily on Zustand `localStorage` to ensure the user's selected model and typed prompt are not lost.
-3. **Mock Async Pipeline:** The 15-second polling state accurately simulates how real AI Video APIs (like Runway or Sora) operate, demonstrating frontend polling mechanics without the backend complexity.
+1. **Authenticated Access Only:** Users must authenticate before accessing the core application (Dashboard). This simplifies state management and ensures all actions are tied to a registered user from the start.
+2. **Simplified Onboarding:** The journey from landing page to the core application is direct, minimizing friction and complex unauthenticated state handling.

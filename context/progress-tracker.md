@@ -9,19 +9,20 @@ change.
 
 ## Current Goal
 
-- Implement Unit 1: Foundation & Design System
+- Implement Unit 2: Landing Page
 
 ## Completed
 
-- None yet.
+- Unit 1: Foundation & Design System
 
 ## In Progress
 
-- Unit 1: Foundation & Design System
+- Unit 2: Landing Page (Building components and assembling page)
+- Unit 2b: UI Render Synchronization & Design Refresh
 
 ## Next Up
 
-- Unit 2
+- Unit 3: Studio UI Shell & Local State (Zustand)
 
 ## Open Questions
 
@@ -34,4 +35,4 @@ change.
 
 ## Session Notes
 
-- [Context needed to resume work in the next session]
+- Implemented Unit 2 landing page spec with dark mode aesthetic and responsive components.
