@@ -23,7 +23,7 @@ export function BottomCTA() {
         <h2 className="font-headline-lg text-headline-md md:text-headline-lg text-white font-semibold tracking-tight max-w-2xl mb-4 leading-[1.15]">Your Next Masterpiece Starts Here</h2>
         <p className="font-body-md text-body-md text-on-surface-variant max-w-xl mb-8">Turn natural language prompts into Hollywood-grade cinematic sequences in seconds with Veo 3.1, Sora, and Runway Gen-3.</p>
         <div className="flex flex-col items-center gap-4">
-          <a className="inline-flex items-center justify-center h-11 px-8 rounded-full bg-white text-black text-sm font-semibold hover:opacity-90 active:scale-95 transition-all shadow-lg" href="#">Start Creating Free</a>
+          <a className="inline-flex items-center justify-center h-11 px-8 rounded-full bg-white text-black text-sm font-semibold hover:opacity-90 active:scale-95 transition-all shadow-lg" href="/dashboard">Start Creating Free</a>
           <span className="font-label-numeric text-xs text-white/50 tracking-wide">8 complimentary 4K credits • Instant access to Veo 3.1 &amp; Sora • Zero setup</span>
         </div>
       </div>

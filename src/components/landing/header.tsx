@@ -26,7 +26,7 @@ export function Header() {
         </div>
         <div className="flex items-center gap-4">
           <Link className="text-sm text-on-surface-variant hover:text-white transition-colors font-medium" href="#">Sign In</Link>
-          <Link className="inline-flex items-center justify-center h-11 px-7 rounded-full bg-white text-black text-sm font-semibold hover:opacity-90 active:scale-95 transition-all" href="#">Start Creating Free</Link>
+          <Link className="inline-flex items-center justify-center h-11 px-7 rounded-full bg-white text-black text-sm font-semibold hover:opacity-90 active:scale-95 transition-all" href="/dashboard">Start Creating Free</Link>
         </div>
       </div>
     </header>

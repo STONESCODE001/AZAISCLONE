@@ -9,7 +9,7 @@ export function Hero() {
           Direct Sora, Veo 3.1, and Runway in 4K with natural language. Zero render farms, no upfront commitment.
         </p>
         <div className="flex items-center justify-center mb-16">
-          <a className="inline-flex items-center justify-center h-11 px-8 rounded-full bg-white text-black text-sm font-semibold hover:opacity-90 active:scale-95 transition-all" href="#">
+          <a className="inline-flex items-center justify-center h-11 px-8 rounded-full bg-white text-black text-sm font-semibold hover:opacity-90 active:scale-95 transition-all" href="/dashboard">
             Start Creating Free
           </a>
         </div>

@@ -310,4 +310,18 @@
   --text-label-pill--line-height: 16px;
   --text-label-pill--letter-spacing: 0.01em;
   --text-label-pill--font-weight: 600;
+
+  /* AzaisAI Architecture Spec Tokens */
+  --color-canvas: #0e0e10;
+  --color-surface: #131315;
+  --color-surface-dim: #131315;
+  --color-surface-bright: #39393b;
+  --color-surface-low: #1c1b1d;
+  --color-surface-elevated: #18181b;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-medium: rgba(255, 255, 255, 0.16);
+  --color-border-active: rgba(255, 255, 255, 0.32);
+  --color-accent-cyan: #38bdf8;
+  --color-accent-cyan-glow: rgba(56, 189, 248, 0.12);
+  --font-mono: JetBrains Mono, monospace;
 }
