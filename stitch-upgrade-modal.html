@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="dark h-full bg-[#0a0a0c]" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AzaisAI - Upgrade Membership</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            surface: '#131315',
+            'surface-dim': '#131315',
+            'surface-bright': '#39393b',
+            'surface-container-lowest': '#0e0e10',
+            'surface-container-low': '#1c1b1d',
+            'surface-container': '#212024',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+            'scale-in': 'scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.96) translateY(8px)' },
+              '100%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-scroll-and-glass">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color-scheme: dark;
+    }
+    .subtle-border {
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+    }
+    .glow-accent {
+      box-shadow: 0 0 30px -10px rgba(255, 255, 255, 0.12);
+    }
+  </style>
+</head>
+<body class="h-full w-full overflow-hidden text-zinc-100 antialiased selection:bg-white selection:text-black">
+<!-- BEGIN: UnderlyingStudioDashboard -->
+<!-- Contextual background showing the exact state of AzaisAI Studio Screen 11 behind the modal overlay -->
+<div aria-hidden="true" class="relative flex h-screen w-full bg-[#0a0a0c] select-none pointer-events-none">
+<!-- Sidebar -->
+<aside class="flex w-64 flex-col justify-between border-r border-white/5 bg-[#0e0e10] p-5">
+<div class="space-y-6">
+<!-- Logo -->
+<div class="flex items-center gap-3 px-2">
+<div class="flex h-8 w-8 items-center justify-center rounded-xl bg-white text-black font-black text-sm">
+<svg class="w-4 h-4 text-black" fill="currentColor" viewbox="0 0 24 24">
+<path d="M4.5 4.5a3 3 0 00-3 3v9a3 3 0 003 3h8.25a3 3 0 003-3v-9a3 3 0 00-3-3H4.5zM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.94-.94 2.56-.27 2.56 1.06v11.38c0 1.33-1.62 2-2.56 1.06z"></path>
+</svg>
+</div>
+<span class="font-bold tracking-tight text-lg text-white">AzaisAI</span>
+</div>
+<!-- Navigation -->
+<nav class="space-y-1">
+<a class="flex items-center gap-3 rounded-full bg-white/10 px-4 py-2.5 text-sm font-medium text-white" href="#">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+            Home
+          </a>
+<a class="flex items-center gap-3 rounded-full px-4 py-2.5 text-sm font-medium text-zinc-400" href="#">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+            Image Generation
+          </a>
+<a class="flex items-center gap-3 rounded-full px-4 py-2.5 text-sm font-medium text-zinc-400" href="#">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+            History
+          </a>
+</nav>
+</div>
+<!-- Footer Engine Info -->
+<div class="border-t border-white/5 pt-4">
+<div class="flex items-center justify-between text-xs text-zinc-400 mb-2">
+<span>Studio Engine</span>
+<span class="text-cyan-400 font-mono text-[11px]">v2.4</span>
+</div>
+<div class="h-1 w-full bg-zinc-800 rounded-full overflow-hidden">
+<div class="h-full w-2/3 bg-cyan-400 rounded-full"></div>
+</div>
+</div>
+</aside>
+<!-- Main Studio Dashboard Canvas -->
+<div class="flex flex-1 flex-col overflow-hidden">
+<!-- Top Bar -->
+<header class="flex h-16 items-center justify-end gap-3 px-8 border-b border-white/5 bg-[#0a0a0c]">
+<div class="flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-3 py-1.5 text-xs text-zinc-300">
+<span class="text-cyan-400">⚡</span>
+<span class="font-medium">8 Credits Remaining</span>
+</div>
+<div class="flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-xs font-semibold shadow-sm">
+<span>↑</span>
+<span>Upgrade</span>
+</div>
+<div class="h-8 w-8 rounded-full border border-white/10 bg-zinc-800 flex items-center justify-center text-xs font-medium">
+          AV
+        </div>
+</header>
+<!-- Center Hero Area (Screen 11) -->
+<main class="flex-1 flex flex-col items-center justify-center px-6 max-w-4xl mx-auto text-center">
+<div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-400">
+<span class="h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
+<span>Studio Ready • Alex Vance</span>
+</div>
+<h1 class="text-5xl font-extrabold tracking-tight text-white mb-3">
+          Where do you want to begin?
+        </h1>
+<p class="text-sm text-zinc-400 mb-8">
+          Direct your vision in natural cinematic language. Switch engines anytime.
+        </p>
+<!-- Mock Prompt Input Box -->
+<div class="w-full max-w-2xl rounded-2xl border border-white/10 bg-[#131315] p-4 text-left shadow-2xl">
+<div class="text-sm text-zinc-500 mb-8">Describe your shot, scene, camera motion, or visual style...</div>
+<div class="flex items-center justify-between border-t border-white/5 pt-3 text-xs text-zinc-400">
+<div class="flex items-center gap-2">
+<span class="rounded-full bg-white/10 px-2.5 py-1 text-white">Video</span>
+<span class="px-2 py-1">Image</span>
+<span class="rounded-full border border-white/10 px-2.5 py-1">Veo 3.1 Cinema</span>
+</div>
+<div class="rounded-full bg-white text-black font-semibold px-4 py-1.5">
+              Create →
+            </div>
+</div>
+</div>
+</main>
+</div>
+</div>
+<!-- END: UnderlyingStudioDashboard -->
+<!-- BEGIN: UpgradeModalOverlay -->
+<!-- Fully centered, radical minimal backdrop & dialogue -->
+<div aria-labelledby="modal-headline" aria-modal="true" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-fade-in" id="upgrade-modal-backdrop" role="dialog">
+<!-- Modal Dialog Card -->
+<div class="relative w-full max-w-[700px] overflow-hidden rounded-3xl border border-white/10 bg-[#0e0e10] p-6 sm:p-8 shadow-2xl subtle-border animate-scale-in" data-purpose="upgrade-modal-container">
+<!-- Close Button (Dismiss Modal) -->
+<button aria-label="Close dialog" class="group absolute top-6 right-6 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-400 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white focus:outline-none" onclick="document.getElementById('upgrade-modal-backdrop').style.display='none'" type="button">
+<svg class="h-4 w-4 transition-transform group-hover:scale-95" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Modal Header -->
+<div class="mb-7 text-left pr-10">
+<div class="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-0.5 text-[11px] font-semibold tracking-wider text-cyan-400 uppercase mb-3">
+<span class="h-1 w-1 rounded-full bg-cyan-400"></span>
+          Compute &amp; Tiers
+        </div>
+<h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white" id="modal-headline">
+          Refuel Your Studio
+        </h2>
+<p class="mt-1.5 text-xs sm:text-sm text-zinc-400 leading-relaxed">
+          Unlock high-throughput rendering queues and higher resolutions. No long-term lock-in.
+        </p>
+</div>
+<!-- Upgrade Options Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<!-- OPTION 1: Pro Creator Membership (Highlighted) -->
+<div class="relative flex flex-col justify-between rounded-2xl border border-white/20 bg-[#161619] p-5 glow-accent transition-all hover:border-white/30">
+<!-- Best Value Badge -->
+<div class="absolute -top-2.5 right-4 rounded-full bg-white px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-black">
+            Most Popular
+          </div>
+<div>
+<div class="flex items-baseline justify-between mb-1">
+<h3 class="text-base font-bold text-white tracking-tight">Pro Creator</h3>
+</div>
+<div class="flex items-baseline gap-1 my-3">
+<span class="text-3xl font-extrabold text-white tracking-tight">$29</span>
+<span class="text-xs font-normal text-zinc-400">/ month</span>
+</div>
+<!-- Value Summary Checklist -->
+<ul class="space-y-2.5 text-xs text-zinc-300 mb-6">
+<li class="flex items-start gap-2">
+<svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+<span><strong>1,200</strong> monthly 4K credits</span>
+</li>
+<li class="flex items-start gap-2">
+<svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+<span>Veo 3.1 &amp; Sora 2 priority line</span>
+</li>
+<li class="flex items-start gap-2">
+<svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+<span>Full commercial rights &amp; 4K exports</span>
+</li>
+</ul>
+</div>
+<!-- Primary CTA -->
+<button class="w-full rounded-full bg-white py-2.5 px-4 text-center text-xs font-bold text-black tracking-wide transition-all hover:bg-zinc-200 active:scale-[0.98] shadow-sm flex items-center justify-center gap-1.5" type="button">
+<span>Upgrade to Pro</span>
+<span class="text-sm">→</span>
+</button>
+</div>
+<!-- OPTION 2: Instant Compute Pack (One-Time) -->
+<div class="relative flex flex-col justify-between rounded-2xl border border-white/5 bg-[#121214] p-5 transition-all hover:border-white/15">
+<div>
+<div class="flex items-baseline justify-between mb-1">
+<h3 class="text-base font-bold text-zinc-200 tracking-tight">Compute Pack</h3>
+</div>
+<div class="flex items-baseline gap-1 my-3">
+<span class="text-3xl font-extrabold text-white tracking-tight">$12</span>
+<span class="text-xs font-normal text-zinc-400">one-time</span>
+</div>
+<!-- Value Summary Checklist -->
+<ul class="space-y-2.5 text-xs text-zinc-400 mb-6">
+<li class="flex items-start gap-2">
+<svg class="h-4 w-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+<span><strong>300</strong> immediate credits</span>
+</li>
+<li class="flex items-start gap-2">
+<svg class="h-4 w-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+<span>Credits never expire</span>
+</li>
+<li class="flex items-start gap-2">
+<svg class="h-4 w-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+<span>Zero recurring billing</span>
+</li>
+</ul>
+</div>
+<!-- Secondary CTA -->
+<button class="w-full rounded-full border border-white/15 bg-white/5 py-2.5 px-4 text-center text-xs font-semibold text-white tracking-wide transition-all hover:bg-white/10 hover:border-white/25 active:scale-[0.98]" type="button">
+            Buy 300 Credits
+          </button>
+</div>
+</div>
+<!-- Trust and Express Checkout Footer -->
+<div class="border-t border-white/5 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-zinc-500 text-[11px]">
+<!-- Microcopy reassurance -->
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1">
+<svg class="h-3.5 w-3.5 text-zinc-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+            Encrypted via Stripe
+          </span>
+<span>•</span>
+<span>Instant studio activation</span>
+<span>•</span>
+<span>Cancel anytime</span>
+</div>
+<!-- Clean Monochrome Express Payment Icons -->
+<div class="flex items-center gap-2 opacity-60 hover:opacity-80 transition-opacity">
+<!-- Apple Pay icon representation -->
+<span class="rounded border border-white/10 px-1.5 py-0.5 text-[10px] font-medium tracking-tight bg-white/5 text-zinc-300">Apple Pay</span>
+<!-- Google Pay -->
+<span class="rounded border border-white/10 px-1.5 py-0.5 text-[10px] font-medium tracking-tight bg-white/5 text-zinc-300">G Pay</span>
+<!-- Cards -->
+<span class="rounded border border-white/10 px-1.5 py-0.5 text-[10px] font-medium tracking-tight bg-white/5 text-zinc-300">Visa / MC</span>
+</div>
+</div>
+</div>
+</div>
+<!-- END: UpgradeModalOverlay -->
+<script data-purpose="keyboard-handler">
+    // Quick ESC listener to close modal seamlessly
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('upgrade-modal-backdrop');
+        if (modal) modal.style.display = 'none';
+      }
+    });
+  </script>
+</body></html>

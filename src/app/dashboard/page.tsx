@@ -2,8 +2,8 @@
 
 import { useStudioStore } from '@/lib/store/useStudioStore';
 import { IntentPromptBar } from '@/components/studio/IntentPromptBar';
-import { InlineResultStage } from '@/components/studio/InlineResultStage';
-import { ContextualReel } from '@/components/studio/ContextualReel';
+import { InlineResultStage, GeneratedMediaItem } from '@/components/studio/InlineResultStage';
+import { ContextualReel, ReelItem } from '@/components/studio/ContextualReel';
 import { ShortcutChips } from '@/components/studio/ShortcutChips';
 import { useState, useEffect } from 'react';
 
@@ -23,7 +23,10 @@ export default function StudioPage() {
   } = useStudioStore();
 
   const [activeMode, setActiveMode] = useState<'video' | 'image'>('video');
-  const [generatedMedia, setGeneratedMedia] = useState<{ url: string; type: 'video' | 'image' } | null>(null);
+  
+  // Initial state is idle prompter (generatedMedia = null)
+  const [generatedMedia, setGeneratedMedia] = useState<GeneratedMediaItem | null>(null);
+  const [activeReelId, setActiveReelId] = useState<string | null>(null);
 
   const shortcutIntents = [
     { label: 'Animate image', intent: 'Animate initial keyframe with gentle orbital tilt and cinematic atmospheric dust' },
@@ -41,17 +44,24 @@ export default function StudioPage() {
   const handleGenerate = () => {
     setIsGenerating(true);
     setGeneratedMedia(null);
-    
+
     // Simulate generation delay
     setTimeout(() => {
       setIsGenerating(false);
+      const isImg = activeMode === 'image' || selectedEngine.includes('flux');
       setGeneratedMedia({
-        url: activeMode === 'image' || selectedEngine.includes('flux') 
+        id: '1',
+        title: prompt ? prompt.slice(0, 30) + '...' : 'Liquid Mercury Ripple Study',
+        prompt: prompt || 'Liquid mercury metallic ripples in extreme macro slow motion, ultra-reflective chrome fluid dynamics',
+        url: isImg
           ? 'https://images.unsplash.com/photo-1682687982501-1e5898147063?q=80&w=1200&auto=format&fit=crop'
-          : 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-        type: activeMode === 'image' || selectedEngine.includes('flux') ? 'image' : 'video'
+          : 'https://lh3.googleusercontent.com/aida-public/AB6AXuDWMKt9tNwY6QmntZWowOdGuIta4aPg5rxbqLVfMOvMTzBuKxLE4aRUhvCI37QHoogU0v42JX3IgY_4FszUO1fdMb7zyA8vYSVhpdhJ8EfermYmHQpd4tcsE-P3v8wjkYHZo8V79e40CXRgTchJHhPNCuM-LxSEOuOkpfyHVKr6x56D41W4Cf33O3oJqn5l3MykdrVezAPweH2UjR9l_-Q7L4qs4swIRnELTJ0HjdH2k-dO7w5nwFvyTg',
+        type: isImg ? 'image' : 'video',
+        engine: selectedEngine === 'veo-3.1' ? 'Veo 3.1' : selectedEngine === 'sora-2' ? 'Sora 2' : 'Flux 1.1',
+        aspectRatio: `${aspectRatio}`,
       });
-    }, 3000);
+      setActiveReelId('1');
+    }, 2000);
   };
 
   const handleDismissResult = () => {
@@ -65,36 +75,46 @@ export default function StudioPage() {
     }
   };
 
+  const handleReelSelect = (item: ReelItem) => {
+    setActiveReelId(item.id);
+    setGeneratedMedia({
+      id: item.id,
+      title: item.title,
+      prompt: item.prompt,
+      url: item.url,
+      type: item.type,
+      engine: item.engine,
+      aspectRatio: '16:9',
+    });
+  };
+
   const handleShortcutSelect = (intent: string) => {
     setPrompt(intent);
-    // Optionally trigger generate immediately: handleGenerate();
   };
 
   if (!mounted) return null; // Avoid hydration mismatch
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-4rem)] w-full max-w-[1200px] mx-auto relative px-4 md:px-6 py-8">
-      
+    <div className="relative w-full max-w-[1200px] mx-auto px-4 md:px-6 py-6 flex flex-col min-h-[calc(100vh-4rem)] justify-between">
       {/* Ambient Depth Underglow */}
-      <div className="pointer-events-none absolute top-12 left-1/2 -translate-x-1/2 w-3/4 max-w-3xl h-64 bg-gradient-to-b from-secondary/10 via-surface-tint/5 to-transparent blur-3xl opacity-50 rounded-full" />
-      
-      <div className="flex-1 flex flex-col items-center pt-8 md:pt-16 z-10">
-        
-        {/* State 1: Generating or Result ready */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-80 bg-gradient-to-b from-secondary/15 via-surface-tint/5 to-transparent blur-3xl opacity-30" />
+
+      <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col gap-6">
+        {/* Prompter State 1: Active Generation or Result Stage */}
         {generatedMedia || isGenerating ? (
-          <div className="w-full flex flex-col items-center justify-center animate-in fade-in slide-in-from-bottom-8 duration-500 mt-12">
+          <div className="w-full flex flex-col items-center justify-center animate-in fade-in slide-in-from-bottom-4 duration-500">
             {isGenerating ? (
-              <div className="flex flex-col items-center gap-6 py-20">
+              <div className="w-full flex flex-col items-center justify-center gap-6 py-20 bg-surface-container-low/80 border border-white/10 rounded-2xl shadow-2xl backdrop-blur-md">
                 <div className="relative h-24 w-24">
                   <div className="absolute inset-0 rounded-full border-4 border-surface-variant"></div>
-                  <div className="absolute inset-0 rounded-full border-4 border-primary border-t-transparent animate-spin"></div>
+                  <div className="absolute inset-0 rounded-full border-4 border-secondary border-t-transparent animate-spin"></div>
                   <div className="absolute inset-0 flex items-center justify-center text-primary text-sm font-medium font-mono animate-pulse">
                     78%
                   </div>
                 </div>
                 <div className="text-center space-y-2">
-                  <h3 className="text-xl font-medium text-text-primary">Synthesizing Pixels</h3>
-                  <p className="text-sm text-text-secondary max-w-sm">Generating your {selectedEngine} {activeMode}...</p>
+                  <h3 className="text-xl font-medium text-on-surface">Synthesizing Pixels</h3>
+                  <p className="text-sm text-on-surface-variant max-w-sm">Generating your {selectedEngine} {activeMode}...</p>
                 </div>
               </div>
             ) : (
@@ -102,7 +122,10 @@ export default function StudioPage() {
                 <InlineResultStage
                   mediaUrl={generatedMedia.url}
                   mediaType={generatedMedia.type}
-                  prompt={prompt}
+                  prompt={generatedMedia.prompt}
+                  title={generatedMedia.title}
+                  engine={generatedMedia.engine}
+                  aspectRatio={generatedMedia.aspectRatio}
                   onDismiss={handleDismissResult}
                   onRemix={handleRemixResult}
                 />
@@ -110,10 +133,10 @@ export default function StudioPage() {
             )}
           </div>
         ) : (
-          /* State 2: Idle Prompt State */
-          <div className="w-full flex flex-col items-center justify-center animate-in fade-in duration-500">
+          /* Prompter State 2: Idle Prompt State */
+          <div className="w-full flex flex-col items-center justify-center animate-in fade-in duration-500 pt-8 md:pt-16">
             <div className="flex flex-col items-center text-center gap-2 mb-8 max-w-2xl">
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high shadow-sm">
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high shadow-sm border border-white/5">
                 <span className="w-2 h-2 rounded-full bg-secondary" />
                 <span className="text-xs font-semibold text-on-surface-variant tracking-wide">Studio Ready • Alex Vance</span>
               </div>
@@ -124,7 +147,7 @@ export default function StudioPage() {
                 Direct your vision in natural cinematic language. Switch engines anytime.
               </p>
             </div>
-            
+
             <IntentPromptBar
               value={prompt}
               onChange={setPrompt}
@@ -140,20 +163,19 @@ export default function StudioPage() {
               activeMode={activeMode}
               onModeChange={setActiveMode}
             />
-            
-            <ShortcutChips 
-              shortcuts={shortcutIntents} 
-              onSelect={handleShortcutSelect} 
+
+            <ShortcutChips
+              shortcuts={shortcutIntents}
+              onSelect={handleShortcutSelect}
             />
           </div>
         )}
-        
-        {/* Render Contextual Reel only when not actively generating or showing full-screen result (or always show at bottom, depending on pref. Mockup has it always at bottom). */}
-        {(!isGenerating && !generatedMedia) && (
-          <div className="w-full mt-auto pt-16">
-            <ContextualReel />
-          </div>
-        )}
+
+        {/* Contextual Reel Section */}
+        <ContextualReel
+          activeId={generatedMedia && activeReelId ? activeReelId : undefined}
+          onSelect={handleReelSelect}
+        />
       </div>
     </div>
   );

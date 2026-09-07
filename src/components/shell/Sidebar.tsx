@@ -9,7 +9,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   const links = [
-    { name: 'Home', href: '/', icon: LayoutGrid },
+    { name: 'Home', href: '/dashboard', icon: LayoutGrid },
     { name: 'History', href: '/history', icon: History },
   ];
 
@@ -25,7 +25,9 @@ export function Sidebar() {
 
         <nav className="flex flex-col gap-1">
           {links.map((link) => {
-            const isActive = pathname === link.href;
+            const isActive = link.href === '/dashboard' 
+              ? pathname === '/dashboard' || pathname === '/' 
+              : pathname === link.href;
             const Icon = link.icon;
             return (
               <Link

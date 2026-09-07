@@ -1,4 +1,8 @@
-export function Hero() {
+interface HeroProps {
+  onOpenAuth?: () => void;
+}
+
+export function Hero({ onOpenAuth }: HeroProps) {
   return (
     <section className="relative w-full overflow-hidden pt-16 pb-20 md:pt-20 md:pb-24">
       <div className="max-w-container-max mx-auto px-gutter-desktop relative z-10 flex flex-col items-center text-center">
@@ -9,9 +13,13 @@ export function Hero() {
           Direct Sora, Veo 3.1, and Runway in 4K with natural language. Zero render farms, no upfront commitment.
         </p>
         <div className="flex items-center justify-center mb-16">
-          <a className="inline-flex items-center justify-center h-11 px-8 rounded-full bg-white text-black text-sm font-semibold hover:opacity-90 active:scale-95 transition-all" href="/dashboard">
+          <button
+            type="button"
+            onClick={onOpenAuth}
+            className="inline-flex items-center justify-center h-11 px-8 rounded-full bg-white text-black text-sm font-semibold hover:opacity-90 active:scale-95 transition-all cursor-pointer"
+          >
             Start Creating Free
-          </a>
+          </button>
         </div>
         <div className="w-full max-w-5xl rounded-lg bg-surface-container-lowest border border-white/[0.08] p-2 md:p-3 shadow-2xl overflow-hidden text-left">
           <div className="flex items-center justify-between px-4 py-2.5 bg-surface-container-low rounded-t-DEFAULT border-b border-white/[0.04] text-on-surface-variant">

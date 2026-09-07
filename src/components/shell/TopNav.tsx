@@ -8,33 +8,44 @@ export function TopNav() {
   const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-[260px] right-0 z-40 bg-surface-dim/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-      <div className="h-16 w-full px-8 flex items-center justify-end gap-6">
-        
+    <header className="fixed top-0 left-[260px] right-0 z-40 bg-[#0a0a0c]/80 backdrop-blur-xl border-b border-white/5">
+      <div className="h-16 w-full px-8 flex items-center justify-end gap-3">
         {/* Credit Counter Pill */}
-        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-high">
-          <Zap className="h-4 w-4 text-secondary" />
-          <span className="font-medium text-sm text-primary">8 Credits Remaining</span>
-        </div>
+        <button
+          type="button"
+          onClick={() => setIsUpgradeModalOpen(true)}
+          className="flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-3.5 py-1.5 text-xs text-zinc-300 hover:bg-white/10 transition-colors cursor-pointer"
+        >
+          <Zap className="h-3.5 w-3.5 text-cyan-400 fill-cyan-400/20" />
+          <span className="font-medium">8 Credits Remaining</span>
+        </button>
 
         {/* Upgrade Button */}
         <button
+          type="button"
           onClick={() => setIsUpgradeModalOpen(true)}
-          className="flex items-center gap-1.5 px-5 py-2 rounded-full bg-primary text-on-primary text-sm font-semibold hover:opacity-90 transition-opacity"
+          className="flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-xs font-semibold shadow-sm hover:bg-zinc-200 transition-colors active:scale-[0.98] cursor-pointer"
         >
-          <ArrowUp className="h-4 w-4" />
-          Upgrade
+          <ArrowUp className="h-3.5 w-3.5" />
+          <span>Upgrade</span>
         </button>
 
         {/* User Avatar */}
-        <button className="h-8 w-8 rounded-full bg-primary flex items-center justify-center transition-colors">
-          <User className="h-4 w-4 text-on-primary" />
+        <button
+          type="button"
+          className="h-8 w-8 rounded-full border border-white/10 bg-zinc-800 flex items-center justify-center text-xs font-medium text-white hover:border-white/20 transition-colors"
+        >
+          <User className="h-4 w-4 text-zinc-300" />
         </button>
       </div>
 
-      <UpgradeModal 
-        isOpen={isUpgradeModalOpen} 
-        onClose={() => setIsUpgradeModalOpen(false)} 
+      <UpgradeModal
+        isOpen={isUpgradeModalOpen}
+        onClose={() => setIsUpgradeModalOpen(false)}
+        onSelectPlan={(planId) => {
+          console.log('Selected plan:', planId);
+          setIsUpgradeModalOpen(false);
+        }}
       />
     </header>
   );
