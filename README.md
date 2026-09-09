@@ -1,4 +1,4 @@
-# Sheybi - Entertainment Prediction App
+# AZAISCLONE
 
 > **Project Status: Core Fundamentals Complete! (80% of heavy lifting done) 🚀**
 
